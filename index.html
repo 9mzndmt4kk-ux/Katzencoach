@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6a85c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="KatzenCoach">
+  <title>KatzenCoach Test-App</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">Test-Prototyp</p>
+      <h1>KatzenCoach</h1>
+      <p class="subline">Foto aufnehmen, Verhalten einordnen, Fütterung planen.</p>
+    </div>
+    <div class="cat-badge">🐱</div>
+  </header>
+
+  <main>
+    <section class="notice">
+      <strong>Wichtiger Hinweis:</strong> Diese App stellt keine Diagnose und ersetzt keine Tierärztin / keinen Tierarzt. Sie gibt nur allgemeine Hinweise auf Basis deiner Eingaben.
+    </section>
+
+    <nav class="tabs" aria-label="App Bereiche">
+      <button class="tab active" data-tab="check">Check</button>
+      <button class="tab" data-tab="profile">Profil</button>
+      <button class="tab" data-tab="food">Fütterung</button>
+      <button class="tab" data-tab="legal">Rechtliches</button>
+    </nav>
+
+    <section id="check" class="panel active">
+      <h2>Wie wirkt deine Katze?</h2>
+      <label class="photo-box">
+        <input id="photoInput" type="file" accept="image/*" capture="environment">
+        <span>📷 Foto aufnehmen oder auswählen</span>
+        <img id="preview" alt="Foto-Vorschau" hidden>
+      </label>
+
+      <div class="grid">
+        <label>Verhalten
+          <select id="behavior">
+            <option value="entspannt">entspannt / liegt ruhig</option>
+            <option value="aufmerksam">aufmerksam / neugierig</option>
+            <option value="versteckt">versteckt sich</option>
+            <option value="unruhig">läuft unruhig herum</option>
+            <option value="aggressiv">faucht / wirkt abwehrend</option>
+            <option value="matt">matt / sehr ruhig</option>
+          </select>
+        </label>
+        <label>Miauen
+          <select id="meow">
+            <option value="normal">normal / selten</option>
+            <option value="futter">laut beim Futterplatz</option>
+            <option value="tuer">an Tür oder Fenster</option>
+            <option value="nacht">nachts sehr laut</option>
+            <option value="dauerhaft">dauerhaft und ungewohnt laut</option>
+          </select>
+        </label>
+      </div>
+
+      <fieldset>
+        <legend>Warnzeichen</legend>
+        <label><input type="checkbox" class="warn" value="frisst nicht"> frisst nicht</label>
+        <label><input type="checkbox" class="warn" value="trinkt auffällig"> trinkt auffällig viel/wenig</label>
+        <label><input type="checkbox" class="warn" value="erbricht"> erbricht wiederholt</label>
+        <label><input type="checkbox" class="warn" value="atemnot"> hechelt / Atemnot</label>
+        <label><input type="checkbox" class="warn" value="blut"> Blut sichtbar</label>
+      </fieldset>
+
+      <button class="primary" id="analyzeBtn">Hinweise anzeigen</button>
+      <article id="result" class="result" hidden></article>
+    </section>
+
+    <section id="profile" class="panel">
+      <h2>Katzenprofil</h2>
+      <label>Name <input id="catName" placeholder="z. B. Mimi"></label>
+      <label>Alter <input id="catAge" type="number" min="0" step="0.5" placeholder="Jahre"></label>
+      <label>Gewicht <input id="catWeight" type="number" min="0" step="0.1" placeholder="kg"></label>
+      <label>Aktivität
+        <select id="catActivity">
+          <option value="niedrig">niedrig</option>
+          <option value="normal" selected>normal</option>
+          <option value="hoch">hoch</option>
+        </select>
+      </label>
+      <button class="primary" id="saveProfile">Profil speichern</button>
+      <p id="profileSaved" class="small"></p>
+    </section>
+
+    <section id="food" class="panel">
+      <h2>Fütterungsplan</h2>
+      <p class="small">Richtwerte, keine tiermedizinische Empfehlung. Bitte Futteretikett und individuelle Bedürfnisse beachten.</p>
+      <label>Futterart
+        <select id="foodType">
+          <option value="nass">Nassfutter</option>
+          <option value="trocken">Trockenfutter</option>
+          <option value="mix">Mix</option>
+        </select>
+      </label>
+      <label>Mahlzeiten pro Tag
+        <select id="meals">
+          <option>2</option><option selected>3</option><option>4</option><option>5</option>
+        </select>
+      </label>
+      <button class="primary" id="foodBtn">Plan erstellen</button>
+      <article id="foodResult" class="result" hidden></article>
+    </section>
+
+    <section id="legal" class="panel">
+      <h2>Impressum, Datenschutz & Haftung</h2>
+      <div class="card">
+        <h3>Impressum Platzhalter</h3>
+        <p>Betreiber: [Name/Firma eintragen]<br>Adresse: [Adresse eintragen]<br>E-Mail: [E-Mail eintragen]</p>
+      </div>
+      <div class="card">
+        <h3>Datenschutz</h3>
+        <p>Diese Test-App verarbeitet Eingaben und Fotos lokal im Browser. In dieser Prototyp-Version werden keine Fotos an einen Server gesendet. Gespeicherte Profildaten liegen nur lokal auf dem Gerät.</p>
+      </div>
+      <div class="card">
+        <h3>Haftungsausschluss</h3>
+        <p>Die Hinweise sind allgemeine Informationen und keine Diagnose. Bei Unsicherheit, auffälligem Verhalten oder Warnzeichen sollte eine Tierarztpraxis kontaktiert werden.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
